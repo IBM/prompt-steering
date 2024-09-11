@@ -1,0 +1,35 @@
+apis: {
+  vllm-api: {
+    parameters: {
+      max_tokens: 500,
+      n: 1
+    },
+    models: [
+      {
+        model-id: "meta-llama/Meta-Llama-3-8B-Instruct",
+        base-url: "http://0.0.0.0:8000/v1",
+        prompt-template-category: "llama-3"
+      },
+      {
+        model-id: "meta-llama/Meta-Llama-3.1-8B-Instruct",
+        base-url: "http://0.0.0.0:8000/v1",
+        prompt-template-category: "llama-3"
+      },
+      {
+        model-id: "meta-llama/Meta-Llama-3-70B-Instruct",
+        base-url: "http://0.0.0.0:8000/v1",
+        prompt-template-category: "llama-3"
+      },
+      {
+        model-id: "microsoft/Phi-3-mini-4k-instruct",
+        base-url: "http://cccxc580.pok.ibm.com:8000/v1",
+        prompt-template-category: "phi3"
+      },
+      {
+        model-id: "microsoft/Phi-3-medium-4k-instruct",
+        base-url: "http://cccxc578.pok.ibm.com:8000/v1",
+        prompt-template-category: "phi3"
+      },
+    ]
+  }
+}
