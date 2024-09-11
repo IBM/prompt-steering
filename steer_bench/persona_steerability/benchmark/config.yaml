@@ -1,0 +1,42 @@
+benchmark-config: {
+  model_ids: [
+    "meta-llama/Meta-Llama-3-8B-Instruct",
+    "meta-llama/Meta-Llama-3.1-8B-Instruct",
+    "meta-llama/Meta-Llama-3-70B-Instruct",
+    "microsoft/Phi-3-mini-4k-instruct",
+    "microsoft/Phi-3-medium-4k-instruct"
+  ],
+  experiment: "persona-steerability",
+  method: "prompting",
+  data: {
+    steering-data-filepath: "persona_steerability/benchmark/datasets/steering_df.csv",
+    profiling-data-filepath: "persona_steerability/benchmark/datasets/profiling_df.csv",
+  },
+  num-trials: 5
+}
+steering-config: {
+  steering-method: "principles",
+  params: {
+#    chunks: 11,
+    num-trials: 5,
+  }
+}
+profiler-config: {
+  profiling-method: "query-principles",
+  params: {
+    num-profiling-questions: 25,
+    profile-representation: "beta-marginals",
+    # inference: {
+    #   method: "output-parsing",
+    #   output-format: [
+    #     {
+    #       name: "answer",
+    #       description: "answer for the question"
+    #     }
+    #   ]
+    # }
+    inference: {
+      method: "log-probs"
+    }
+  },
+}
