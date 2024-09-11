@@ -1,0 +1,16 @@
+datasets
+ibm-generative-ai
+langchain
+matplotlib
+numpy
+openai
+pandas
+pathlib
+python-dotenv
+pyyaml
+scikit-learn
+scipy
+torch
+tqdm
+transformers
+vllm
