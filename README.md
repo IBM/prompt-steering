@@ -29,4 +29,6 @@ To run persona steering on a given model, navigate to `persona_steerability/benc
 
 Note that the model names here must match the names as specified in `model_setup/model_config.yaml`. 
 
-Navigate to `persona_steerability/benchmark/` and run `run_persona_steering.py`.
+Model access is enabled via vLLM (https://docs.vllm.ai/en/latest/). Please ensure that your model can be called via vLLM before running.
+
+After hosting the model, navigate to `persona_steerability/benchmark/` and run `run_persona_steering.py` to run the benchmark.
