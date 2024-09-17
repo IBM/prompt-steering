@@ -22,12 +22,12 @@ apis: {
       },
       {
         model-id: "microsoft/Phi-3-mini-4k-instruct",
-        base-url: "http://cccxc580.pok.ibm.com:8000/v1",
+        base-url: "http://0.0.0.0:8000/v1",
         prompt-template-category: "phi3"
       },
       {
         model-id: "microsoft/Phi-3-medium-4k-instruct",
-        base-url: "http://cccxc578.pok.ibm.com:8000/v1",
+        base-url: "http://0.0.0.0:8000/v1",
         prompt-template-category: "phi3"
       },
     ]
