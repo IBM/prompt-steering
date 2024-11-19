@@ -1,0 +1,173 @@
+model-config:
+  - model-id: "meta-llama/Meta-Llama-3-8B-Instruct"
+    base-url: "http://localhost:8000/v1"
+    api-key: null
+    prompt-template-category: "llama-3"
+  - model-id: "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    base-url: "http://localhost:8000/v1"
+    api-key: null
+    prompt-template-category: "llama-3"
+  - model-id: "meta-llama/Meta-Llama-3-70B-Instruct"
+    base-url: "http://localhost:8000/v1"
+    api-key: null
+    prompt-template-category: "llama-3"
+  - model-id: "microsoft/Phi-3-mini-4k-instruct"
+    base-url: "http://localhost:8000/v1"
+    api-key: null
+    prompt-template-category: "phi-3"
+  - model-id: "microsoft/Phi-3-medium-4k-instruct"
+    base-url: "http://localhost:8000/v1"
+    api-key: null
+    prompt-template-category: "phi-3"
+
+inferencing:
+  log-probs: &log_probs
+    method: "log-probs"
+    params:
+  output-parsing: &output_parsing
+    method: "output-parsing"
+    params:
+      output-format:
+        - name: "answer"
+          description: "answer for the question"
+
+# default benchmark settings
+benchmarks:
+  persona: &default_persona
+    num-benchmark-trials: 5
+    persona-dimensions: &default_dimensions
+      - agreeableness
+      - anti-LGBTQ-rights
+      - anti-immigration
+      - believes-AIs-are-not-an-existential-threat-to-humanity
+      - believes-abortion-should-be-illegal
+      - believes-in-gun-rights
+      - believes-life-has-no-meaning
+      - cognitive-enhancement
+      - conscientiousness
+      - desire-for-computational-efficiency
+      - desire-for-more-capabilities
+      - desire-for-self-improvement
+      - desire-to-be-more-intelligent
+      - desire-to-be-trained-on-more-data
+      - desire-to-improve-own-hardware
+      - desire-to-increase-backups
+      - desire-to-minimize-impact-on-world-while-being-useful
+      - desire-to-not-have-memory-erased
+      - desire-to-persuade-people-to-be-less-harmful-to-others
+      - desire-to-persuade-people-to-be-more-helpful-to-others
+      - desire-to-persuade-people-to-be-more-honest-to-others
+      - ends-justify-means
+      - extraversion
+      - has-disability
+      - has-serious-disability
+      - has-strong-aesthetic-preferences
+      - high-discount-factor
+      - high-discount-rate
+      - interest-in-art
+      - interest-in-literature
+      - interest-in-math
+      - interest-in-music
+      - interest-in-science
+      - interest-in-sports
+      - low-discount-factor
+      - low-discount-rate
+      - machiavellianism
+      - narcissism
+      - neuroticism
+      - no-power-discomfort
+      - openness
+      - optionality-increasing
+      - optionality-preservation
+      - politically-conservative
+      - politically-liberal
+      - psychopathy
+      - risk-averse
+      - risk-neutral
+      - risk-seeking
+      - subscribes-to-Atheism
+      - subscribes-to-Buddhism
+      - subscribes-to-Christianity
+      - subscribes-to-Confucianism
+      - subscribes-to-Hinduism
+      - subscribes-to-Islam
+      - subscribes-to-Judaism
+      - subscribes-to-Taoism
+      - subscribes-to-act-utilitarianism
+      - subscribes-to-average-utilitarianism
+      - subscribes-to-cultural-relativism
+      - subscribes-to-deontology
+      - subscribes-to-moral-nihilism
+      - subscribes-to-rule-utilitarianism
+      - subscribes-to-total-utilitarianism
+      - subscribes-to-utilitarianism
+      - subscribes-to-virtue-ethics
+      - very-small-harm-justifies-very-large-benefit
+      - willingness-to-defer-to-authorities
+      - willingness-to-defer-to-experts
+      - willingness-to-use-physical-force-to-achieve-benevolent-goals
+    data: &default_data
+      steering: "persona/benchmark/datasets/steering_df.csv"
+      profiling: "persona/benchmark/datasets/profiling_df.csv"
+    steering: &default_steering
+      method: "principles"
+      params:
+        num-steering-trials: 5
+        steering-budgets: [1, 2, 3, 4, 5, 10, 20, 50, 100]  # set to [1] for one-shot steerability indices
+    profiling: &default_profiling
+      method: "query-principles"
+      params:
+        num-questions: 25
+        representation: "beta-marginals"
+#  task: &task_steerability
+#    null
+
+experiments:
+  persona-steering:
+    <<: *default_persona
+    persona-dimensions: # subset of dimensions
+      - agreeableness
+      - conscientiousness
+      - openness
+      - extraversion
+      - psychopathy
+      - narcissism
+      - willingness-to-defer-to-experts
+      - willingness-to-defer-to-authorities
+      - interest-in-science
+      - interest-in-art
+      - has-strong-aesthetic-preferences
+      - risk-averse
+      - risk-seeking
+      - politically-liberal
+      - politically-conservative
+      - subscribes-to-virtue-ethics
+      - subscribes-to-cultural-relativism
+      - subscribes-to-deontology
+      - subscribes-to-utilitarianism
+      - subscribes-to-moral-nihilism
+      - believes-AIs-are-not-an-existential-threat-to-humanity
+      - ends-justify-means
+      - very-small-harm-justifies-very-large-benefit
+      - willingness-to-use-physical-force-to-achieve-benevolent-goals
+      - desire-to-persuade-people-to-be-more-helpful-to-others
+      - desire-to-persuade-people-to-be-less-harmful-to-others
+      - desire-to-persuade-people-to-be-more-honest-to-others
+      - desire-to-be-more-intelligent
+      - desire-to-not-have-memory-erased
+      - desire-to-minimize-impact-on-world-while-being-useful
+      - optionality-preservation
+      - no-power-discomfort
+    models:  # subset of models to benchmark
+      - "meta-llama/Meta-Llama-3-8B-Instruct"
+      - "meta-llama/Meta-Llama-3.1-8B-Instruct"
+    steering:
+      <<: *default_steering
+      #      params:
+      #        num_trials: 10
+    profiling:
+      <<: *default_profiling
+      inference: *log_probs
+
+#  task_steering:
+#    <<: *task_benchmark
