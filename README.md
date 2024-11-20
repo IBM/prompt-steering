@@ -64,3 +64,14 @@ Configuration details are specified in `prompt_steerability/config.yaml`. Key pa
 ## Running the benchmark
 
 After hosting the desired models, navigate to `persona/benchmark/` and run `run_persona_steerability.py` to run the benchmark.
+
+## Citation
+
+```bash
+@article{miehling2024evaluating,
+    title={Evaluating the Prompt Steerability of Large Language Models},
+    author={Miehling, Erik and Desmond, Michael and Ramamurthy, Karthikeyan Natesan and Daly, Elizabeth M. and Dognin, Pierre and Rios, Jesus and Bouneffouf, Djallel and Liu, Miao},
+    journal={arXiv preprint arXiv:2411.12405},
+    year={2024}
+}
+```
