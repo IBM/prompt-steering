@@ -1,0 +1,17 @@
+NOTICE
+
+This repository contains software licensed under the Apache License,
+Version 2.0.
+
+This repository also includes datasets and evaluation materials derived
+from the "anthropics/evals" repository, which are licensed under the
+Creative Commons Attribution 4.0 International License (CC BY 4.0).
+
+The CC BY 4.0 licensed materials are not covered by the Apache License.
+They remain subject to their original license terms.
+
+Source:
+https://github.com/anthropics/evals
+
+Modifications may have been made to the original materials. Any such
+modifications are documented in dataset-specific attribution files.
